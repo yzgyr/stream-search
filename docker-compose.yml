@@ -1,14 +1,15 @@
 services:
   app:
+    container_name: streamsearch
     build:
       context: .
       dockerfile: Dockerfile
       args:
-        NODE_ENV: ${NODE_ENV} # Pass NODE_ENV from the environment
+        NODE_ENV: ${NODE_ENV:-production} # Default to production if NODE_ENV is not set
     ports:
       - "3000:3000"
     environment:
-      NODE_ENV: ${NODE_ENV} # Pass NODE_ENV to the container
+      NODE_ENV: ${NODE_ENV:-production} # Default to production if NODE_ENV is not set
     volumes:
       - .:/app
       - /app/node_modules

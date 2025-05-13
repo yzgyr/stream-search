@@ -3,10 +3,12 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        NODE_ENV: ${NODE_ENV} # Pass NODE_ENV from the environment
     ports:
-      - "3333:3000" # Map port 3000 on the host to port 3000 in the container
+      - "3000:3000"
     environment:
-      NODE_ENV: production
+      NODE_ENV: ${NODE_ENV} # Pass NODE_ENV to the container
     volumes:
       - .:/app
       - /app/node_modules

@@ -38,7 +38,7 @@ COPY --from=builder /app/pnpm-lock.yaml ./
 RUN pnpm install --prod
 
 # Expose the port the app runs on
-EXPOSE 3333
+EXPOSE 3000
 
 # Start the Next.js app
 CMD ["pnpm", "start"]

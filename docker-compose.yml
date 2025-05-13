@@ -7,7 +7,7 @@ services:
       args:
         NODE_ENV: ${NODE_ENV:-production} # Default to production if NODE_ENV is not set
     ports:
-      - "3000:3000"
+      - "3333:3333" # Default to 3000 if PORT is not set
     environment:
       NODE_ENV: ${NODE_ENV:-production} # Default to production if NODE_ENV is not set
     volumes:

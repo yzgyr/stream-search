@@ -22,7 +22,7 @@ const countryNames: { [key: string]: string } = {
 
 interface MovieListProps {
     movie: Movie;
-    type: 'all' | 'subscription' | 'rent' | 'buy';
+    type: string;
 }
 
 const MovieList: React.FC<MovieListProps> = ({ movie, type }: MovieListProps) => {

@@ -8,7 +8,6 @@ import {
   CardContent,
   CardMedia,
   Typography,
-  Grid,
   Button,
   Box,
   IconButton,

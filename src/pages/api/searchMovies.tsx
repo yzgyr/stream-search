@@ -12,6 +12,16 @@ export default async function searchMovies(
 ) {
   const { title, cursor } = req.query;
 
+  if (
+    !API_URL_TITLE ||
+    !API_HOST ||
+    !API_URL_MOVIE ||
+    !API_URL_MOVIE ||
+    !API_KEY
+  ) {
+    return res.status(500).json({ error: "Missing API configuration" });
+  }
+
   if (!title) {
     return res.status(400).json({ error: "Movie title is required" });
   }

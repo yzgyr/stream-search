@@ -36,9 +36,10 @@ COPY --from=builder /app/pnpm-lock.yaml ./
 
 # Install only production dependencies using pnpm
 RUN pnpm install --prod
+RUN pnpm run build
 
 # Expose the port the app runs on
 EXPOSE 3000
 
 # Start the Next.js app
-CMD ["pnpm", "start"]
+CMD ["pnpm", "run", "start"]

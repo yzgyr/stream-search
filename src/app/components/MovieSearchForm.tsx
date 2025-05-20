@@ -9,9 +9,9 @@ const MovieSearchForm: React.FC<MovieSearchFormProps> = ({ onSearch }) => {
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    if (title.trim() === "") {
-      onSearch("Tomorrow War");
-    }
+    // if (title.trim() === "") {
+    //   onSearch("Tomorrow War");
+    // }
     if (title.trim()) {
       onSearch(title);
       setTitle("");

@@ -26,7 +26,7 @@ const Home = () => {
     if (isNewSearch) {
       setCursor(null); // Reset the cursor for a new search
     }
-    title = "Tomorrow War";
+    // title = "Tomorrow War";
 
     const response = await fetch(
       `/api/searchMovies?title=${encodeURIComponent(title)}&country=us${cursor && !isNewSearch ? `&cursor=${encodeURIComponent(cursor)}` : ""}`,

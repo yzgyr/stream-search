@@ -10,6 +10,14 @@ export default async function searchMovies(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
+  res.setHeader('Access-Control-Allow-Credentials', 1)
+  res.setHeader('Access-Control-Allow-Origin', '*') // Allows all origins
+  res.setHeader('Access-Control-Allow-Methods', 'GET')
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  )
+
   const { title, cursor } = req.query;
 
   if (

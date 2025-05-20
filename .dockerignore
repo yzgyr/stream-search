@@ -1,0 +1,15 @@
+node_modules
+.next
+dist
+npm-debug.log
+pnpm-debug.log
+yarn-error.log
+.DS_Store
+.env
+.env.local
+.git
+.gitignore
+.vscode
+coverage
+*.swp
+*.swo

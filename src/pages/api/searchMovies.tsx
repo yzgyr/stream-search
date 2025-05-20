@@ -16,8 +16,15 @@ export default async function searchMovies(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  const { title, cursor } = req.query;
 
+  const { title, cursor } = req.query;
+  res.setHeader('Access-Control-Allow-Credentials', 1)
+  res.setHeader('Access-Control-Allow-Origin', '*') // Allows all origins
+  res.setHeader('Access-Control-Allow-Methods', 'GET')
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  )
   if (
     !API_URL_TITLE ||
     !API_HOST ||
@@ -32,17 +39,17 @@ export default async function searchMovies(
     return res.status(400).json({ error: "Movie title is required" });
   }
 
-  // Redis-based daily counter
-  const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
-  const lastDate = await redis.get(COUNTER_DATE_KEY);
-  if (lastDate !== today) {
-    await redis.set(COUNTER_DATE_KEY, today);
-    await redis.set(COUNTER_KEY, 0);
-  }
-  const count = await redis.incr(COUNTER_KEY);
-  if (count > LIMIT) {
-    return res.status(429).json({ error: "Daily request limit reached" });
-  }
+  // --- Deactivated Redis-based daily counter ---
+  // const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+  // const lastDate = await redis.get(COUNTER_DATE_KEY);
+  // if (lastDate !== today) {
+  //   await redis.set(COUNTER_DATE_KEY, today);
+  //   await redis.set(COUNTER_KEY, 0);
+  // }
+  // const count = await redis.incr(COUNTER_KEY);
+  // if (count > LIMIT) {
+  //   return res.status(429).json({ error: "Daily request limit reached" });
+  // }
 
   const options = {
     method: "GET",

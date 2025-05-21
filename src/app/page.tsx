@@ -20,13 +20,12 @@ const Home = () => {
   const [type, setType] = useState("subscription");
 
   const fetchMovies = async (title: string, isNewSearch: boolean = false) => {
-    // if (!title) {
-    //     return;
-    // }
+    if (!title) {
+        return;
+    }
     if (isNewSearch) {
       setCursor(null); // Reset the cursor for a new search
     }
-    title = "Tomorrow War";
 
     const response = await fetch(
       `/api/searchMovies?title=${encodeURIComponent(title)}&country=us${cursor && !isNewSearch ? `&cursor=${encodeURIComponent(cursor)}` : ""}`,

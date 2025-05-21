@@ -1,19 +1,18 @@
 import React, { useState } from "react";
+import { countryList } from "./countryList";
 
 interface MovieSearchFormProps {
-  onSearch: (title: string) => void;
+  onSearch: (title: string, country: string) => void;
 }
 
 const MovieSearchForm: React.FC<MovieSearchFormProps> = ({ onSearch }) => {
   const [title, setTitle] = useState("");
+  const [country, setCountry] = useState("us");
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    if (title.trim() === "") {
-      onSearch("Tomorrow War");
-    }
     if (title.trim()) {
-      onSearch(title);
+      onSearch(title, country);
       setTitle("");
     }
   };
@@ -35,6 +34,19 @@ const MovieSearchForm: React.FC<MovieSearchFormProps> = ({ onSearch }) => {
         placeholder="Enter movie title"
         style={{ padding: "10px", width: "300px", marginBottom: "10px" }}
       />
+      <select
+        value={country}
+        onChange={(e) => setCountry(e.target.value)}
+        style={{ padding: "10px", width: "300px", marginBottom: "10px" }}
+      >
+        {countryList
+          .sort((a, b) => a.name.localeCompare(b.name))
+          .map((c) => (
+            <option key={c.code} value={c.code}>
+              {c.name}
+            </option>
+          ))}
+      </select>
       <button type="submit" style={{ padding: "10px 20px" }}>
         Search
       </button>

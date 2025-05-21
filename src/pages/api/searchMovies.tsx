@@ -1,13 +1,13 @@
 import { Movie } from "@/app/interfaces/movie";
 import type { NextApiRequest, NextApiResponse } from "next";
-import Redis from "ioredis";
+// import Redis from "ioredis";
 
-const API_URL_TITLE = `${process.env.API_PROTOCOL}://${process.env.API_HOST}/${process.env.API_URL_SEARCH}?series_granularity=show&output_language=en`;
-const API_URL_MOVIE = `${process.env.API_PROTOCOL}://${process.env.API_HOST}/${process.env.API_URL_MOVIE}`;
+const API_URL_TITLE = `${process.env.API_PROTOCOL}://${process.env.API_HOST}/shows/search/title?series_granularity=show&output_language=en`;
+const API_URL_MOVIE = `${process.env.API_PROTOCOL}://${process.env.API_HOST}/shows/`;
 const API_KEY = `${process.env.API_KEY}`;
 const API_HOST = `${process.env.API_HOST}`;
 
-const redis = new Redis(process.env.REDIS_URL || "redis://localhost:6379");
+// const redis = new Redis(process.env.REDIS_URL || "redis://10.11.10.2:6379");
 const COUNTER_KEY = "searchMovies:counter";
 const COUNTER_DATE_KEY = "searchMovies:counter:date";
 const LIMIT = 500;

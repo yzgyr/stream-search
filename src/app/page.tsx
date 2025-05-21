@@ -21,7 +21,7 @@ const Home = () => {
 
   const fetchMovies = async (title: string, isNewSearch: boolean = false) => {
     if (!title) {
-        return;
+      return;
     }
     if (isNewSearch) {
       setCursor(null); // Reset the cursor for a new search
